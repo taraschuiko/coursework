@@ -1,16 +1,15 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        int[][] matrix = readMatrix("text.txt");
+        int[][] matrix = readMatrix("matrix.txt");
+
         printMatrix(matrix);
         matrix = sortMatrix(matrix);
-        System.out.println();
         printMatrix(matrix);
+        additionalTask(matrix);
     }
 
     static int[][] readMatrix(String pathname) throws FileNotFoundException {
@@ -44,6 +43,7 @@ public class Main {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     static int[][] sortMatrix(int[][] matrix) {
@@ -84,7 +84,24 @@ public class Main {
         return matrix;
     }
 
-    static void additionalTask(int[][] matrix) {
-        // TODO: 2019-04-15 make additional task: Середнє парних елементів
+    static void additionalTask(int[][] matrix) throws IOException {
+        int countEvenElements = 0;
+        int sumOfEvenElements = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] % 2 == 0) {
+                    countEvenElements++;
+                    sumOfEvenElements += matrix[i][j];
+                }
+            }
+        }
+
+        int averageOfEvenElements = sumOfEvenElements / countEvenElements;
+
+        File file = new File("result.txt");
+        BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt"));
+        writer.write("Середнє парних елементів: " + averageOfEvenElements);
+        writer.close();
     }
 }
