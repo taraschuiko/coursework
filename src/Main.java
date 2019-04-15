@@ -9,6 +9,7 @@ public class Main {
         int[][] matrix = readMatrix("text.txt");
         printMatrix(matrix);
         matrix = sortMatrix(matrix);
+        System.out.println();
         printMatrix(matrix);
     }
 
@@ -46,7 +47,40 @@ public class Main {
     }
 
     static int[][] sortMatrix(int[][] matrix) {
-        // TODO: 2019-04-15 make matrix sorting
+        int min = matrix[0][0];
+        int max = matrix[0][0];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] < min) min = matrix[i][j];
+                if (matrix[i][j] > max) max = matrix[i][j];
+            }
+        }
+
+        for (int i = 0; i < matrix.length; i++) {
+            boolean hasMinOrMax = false;
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == min || matrix[i][j] == max) {
+                    hasMinOrMax = true;
+                    break;
+                }
+            }
+
+            if (hasMinOrMax) {
+                for (int j = 1; j < matrix[0].length; j++) {
+                    int temp = matrix[i][j];
+                    for (int k = j; k > 0; k--) {
+                        if (matrix[i][k-1] > temp) {
+                            matrix[i][k] = matrix[i][k-1];
+                            matrix[i][k-1] = temp;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         return matrix;
     }
 
