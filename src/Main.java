@@ -18,10 +18,6 @@ public class Main {
         int n = Integer.parseInt(scanner.nextLine());
         System.out.print("M = ");
         int m = Integer.parseInt(scanner.nextLine());
-        System.out.print("min = ");
-        int min = Integer.parseInt(scanner.nextLine());
-        System.out.print("max = ");
-        int max = Integer.parseInt(scanner.nextLine());
 
         int[][] matrix = new int[n][m];
 
@@ -67,21 +63,27 @@ public class Main {
             }
 
             if (hasMinOrMax) {
-                for (int j = 1; j < matrix[0].length; j++) {
-                    int temp = matrix[i][j];
-                    for (int k = j; k > 0; k--) {
-                        if (matrix[i][k-1] > temp) {
-                            matrix[i][k] = matrix[i][k-1];
-                            matrix[i][k-1] = temp;
-                        } else {
-                            break;
-                        }
-                    }
-                }
+                matrix[i] = sortArray(matrix[i]);
             }
         }
 
         return matrix;
+    }
+
+    static int[] sortArray(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int temp = array[i];
+            for (int j = i; j > 0; j--) {
+                if (array[j-1] > temp) {
+                    array[j] = array[j-1];
+                    array[j-1] = temp;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return array;
     }
 
     static void additionalTask(int[][] matrix) throws IOException {

@@ -19,7 +19,7 @@ public class FileGenerator {
         String matrix = "";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                int randomNumber = min + (int) (Math.random() * (max - min));
+                int randomNumber = min + (int) (Math.random() * (max - min + 1));
                 matrix += randomNumber + " ";
             }
             matrix += "\n";
