@@ -2,12 +2,12 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Matrix matrix = new Matrix();
-        matrix.readFromFile("matrix.txt");
-        matrix.print();
-        matrix.sort();
-        matrix.print();
-        additionalTask(matrix.getMatrix());
+        Matrix a = new Matrix();
+        a.readFromFile("Data.txt");
+        a.print();
+        a.sort();
+        a.print();
+        additionalTask(a.getMatrix());
     }
 
     private static void additionalTask(int[][] matrix) throws IOException {
@@ -25,8 +25,10 @@ public class Main {
 
         int averageOfEvenElements = sumOfEvenElements / countEvenElements;
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt"));
-        writer.write("Середнє парних елементів: " + averageOfEvenElements);
-        writer.close();
+        System.out.println("Середнє парних елементів: " + averageOfEvenElements);
+
+        FileWriter fileWriter = new FileWriter("Data.txt");
+        fileWriter.write("Середнє парних елементів: " + averageOfEvenElements);
+        fileWriter.close();
     }
 }

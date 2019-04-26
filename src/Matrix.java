@@ -25,6 +25,7 @@ class Matrix {
                 matrix[i][j] = fileScanner.nextInt();
             }
         }
+        fileScanner.close();
 
         this.matrix = matrix;
     }
@@ -53,12 +54,13 @@ class Matrix {
             }
 
             if (hasMinOrMax) {
-                this.matrix[i] = sortRow(this.matrix[i]);
+                this.matrix[i] = sortRow(i);
             }
         }
     }
 
-    private int[] sortRow(int[] row) {
+    private int[] sortRow(int rowNumber) {
+        int[] row = this.matrix[rowNumber];
         for (int i = 1; i < row.length; i++) {
             int temp = row[i];
             for (int j = i; j > 0; j--) {

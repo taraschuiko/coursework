@@ -25,9 +25,9 @@ public class FileGenerator {
             matrix += "\n";
         }
 
-        File file = new File("matrix.txt");
+        File file = new File("Data.txt");
         file.createNewFile();
-        BufferedWriter writer = new BufferedWriter(new FileWriter("matrix.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Data.txt"));
         writer.write(matrix);
         writer.close();
     }
